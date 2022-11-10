@@ -8,4 +8,5 @@ typedef struct GoState {
 
 GoState* InitGoState();
 void DestroyGoState(GoState* g);
+uint8_t IsCaptured(GoState* g, int index);
 

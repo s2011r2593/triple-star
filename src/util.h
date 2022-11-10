@@ -2,7 +2,7 @@
 #include <stdint.h>
 
 typedef struct llist {
-	llist* next;
+	struct llist* next;
 	uint16_t value;
 } llist;
 
