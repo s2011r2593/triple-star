@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <wchar.h>
 
 #include "util.h"
 #include "go.h"
@@ -40,6 +41,50 @@ void DestroyGoState(GoState* g) {
 	}
 	free(g->position);
 	free(g);
+}
+
+// Prints out board
+void PrintGoPosition(GoState* g) {
+	for (int i = 0; i < 361; i++) {
+		wchar_t character = 0x253c; // +
+		if (g->position[0][i]) {
+			character = 0x25cf; // Black
+		} else if (g->position[1][i]) {
+			character = 0x25ef; // White
+		} else if (0 < i && i < 18) {
+			character = 0x252c; // T
+		} else if (342 < i && i < 360) {
+			character = 0x2534; // _|_
+		} else if (i % 19 == 0) {
+			switch(i) {
+				case (0):
+					character = 0x250c; // r
+					break;
+				case (342):
+					character = 0x2514; // L
+					break;
+				default:
+					character = 0x251c; // |-
+			}
+		} else if (i % 19 == 18) {
+			switch(i) {
+				case (18):
+					character = 0x2510; // 7
+					break;
+				case (360):
+					character = 0x2518; // J
+					break;
+				default:
+					character = 0x2524; //-|
+			}
+		}
+
+		if (i % 19 == 0) {
+			printf("\n");
+		}
+		printf("%lc", character);
+	}
+	printf("\n");
 }
 
 // Finds status of surrounding stones
