@@ -1,6 +1,8 @@
 bin/
 build/
+.vscode/
 
+.gdb_history
 *.swp
 *.swo
 
